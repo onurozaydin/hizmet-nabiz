@@ -1,0 +1,66 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hizmet-nabiz"
+version = "0.1.0"
+description = "Decision-grade service equity and backlog intelligence for NYC 311 operations"
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+license = {text = "MIT"}
+authors = [{name = "Onur Ozaydin"}]
+dependencies = [
+  "Jinja2==3.1.6",
+  "numpy==2.2.6",
+  "pandas==2.2.3",
+  "PyYAML==6.0.2",
+  "requests==2.32.4",
+  "scipy==1.15.3",
+]
+
+[project.scripts]
+hizmet-nabiz = "hizmet_nabiz.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "ipykernel==6.29.5",
+  "mypy==1.15.0",
+  "nbclient==0.10.2",
+  "nbformat==5.10.4",
+  "pandas-stubs==2.2.3.250527",
+  "pytest==8.3.5",
+  "pytest-cov==6.1.1",
+  "ruff==0.11.12",
+  "types-PyYAML==6.0.12.20250516",
+  "types-requests==2.32.0.20250515",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/hizmet_nabiz"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_unreachable = true
+packages = ["hizmet_nabiz"]
+
+[tool.pytest.ini_options]
+addopts = "-q --cov=hizmet_nabiz --cov-report=term-missing --cov-fail-under=85"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = ["if __name__ == .__main__.:", "pragma: no cover"]

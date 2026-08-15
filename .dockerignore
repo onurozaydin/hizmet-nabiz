@@ -1,0 +1,7 @@
+.git
+.venv
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.coverage
+data/raw/*.csv.gz
