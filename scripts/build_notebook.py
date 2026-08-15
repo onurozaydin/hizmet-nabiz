@@ -7,6 +7,8 @@ from __future__ import annotations
 import ast
 import contextlib
 import io
+import subprocess
+import sys
 from pathlib import Path
 from typing import Any
 
@@ -89,8 +91,8 @@ def main() -> int:
             "- The scenario's 25% reduction is hypothetical and non-causal."
         ),
         nbformat.v4.new_code_cell(
-            "from pathlib import Path\n"
             "import json\n"
+            "from pathlib import Path\n\n"
             "import pandas as pd\n\n"
             "ROOT = Path.cwd()\n"
             "summary = json.loads((ROOT / 'data/processed/analysis_summary.json').read_text())\n"
@@ -152,6 +154,22 @@ def main() -> int:
             "operational deployment."
         ),
     ]
+    cell_ids = [
+        "tldr",
+        "context-methods",
+        "load-artifacts",
+        "data-heading",
+        "quality-table",
+        "results-heading",
+        "headline-metrics",
+        "shortlist-heading",
+        "shortlist-table",
+        "invariants-heading",
+        "invariants",
+        "takeaways",
+    ]
+    for cell, cell_id in zip(notebook["cells"], cell_ids, strict=True):
+        cell["id"] = cell_id
     output = root / "notebooks/01_validation_companion.ipynb"
     current = Path.cwd()
     try:
@@ -163,6 +181,9 @@ def main() -> int:
         notebook["metadata"]["execution"]["working_directory"] = str(current.name)
     nbformat.validate(notebook)
     nbformat.write(notebook, output)
+    ruff = Path(sys.executable).with_name("ruff")
+    subprocess.run([str(ruff), "format", str(output)], check=True)
+    nbformat.validate(nbformat.read(output, as_version=4))
     return 0
 
 
