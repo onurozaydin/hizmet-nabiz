@@ -1,0 +1,46 @@
+project:
+  name: HizmetNabiz
+  seed: 20250815
+
+source:
+  dataset_id: erm2-nwe9
+  dataset_name: 311 Service Requests from 2020 to Present
+  publisher: NYC OpenData / NYC311
+  api_url: https://data.cityofnewyork.us/resource/erm2-nwe9.json
+  catalog_url: https://data.cityofnewyork.us/Social-Services/311-Service-Requests-from-2020-to-Present/erm2-nwe9/about_data
+  terms_url: https://opendata.cityofnewyork.us/overview/
+  created_from: "2025-01-01T00:00:00"
+  created_to_exclusive: "2025-01-08T00:00:00"
+  page_size: 25000
+  columns:
+    - unique_key
+    - created_date
+    - closed_date
+    - agency
+    - agency_name
+    - complaint_type
+    - incident_zip
+    - borough
+    - status
+    - due_date
+    - community_board
+    - open_data_channel_type
+
+quality:
+  min_rows: 50000
+  max_duplicate_key_rate: 0.0
+  min_created_date_parse_rate: 0.999
+  min_geography_coverage: 0.85
+  max_negative_duration_rate: 0.001
+
+analysis:
+  minimum_board_requests: 100
+  peer_minimum_requests: 50
+  high_delay_quantile: 0.75
+  eb_prior_strength: 40
+  credible_interval: 0.90
+
+scenario:
+  intervention_capacity_cases: 500
+  assumed_excess_delay_reduction: 0.25
+  max_capacity_share_per_board: 0.25

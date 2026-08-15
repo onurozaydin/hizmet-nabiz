@@ -1,0 +1,24 @@
+{
+  "board_rows": 59,
+  "checks": {
+    "board_count_matches": true,
+    "daily_rows_reconcile": true,
+    "dashboard_embeds_exact_request_count": true,
+    "due_date_guardrail_active": true,
+    "median_recomputed": true,
+    "p90_recomputed": true,
+    "quality_gate_passed": true,
+    "scenario_respects_board_cap": true,
+    "scenario_within_capacity": true,
+    "source_rows_match_manifest": true,
+    "source_rows_match_summary": true,
+    "unique_keys": true
+  },
+  "created_max": "2025-01-07T23:59:58",
+  "created_min": "2025-01-01T00:00:12",
+  "passed": true,
+  "raw_sha256": "07bfb34477bb4b8470542e863663f28f220497fb65a09f147883101ae9f31cac",
+  "scenario_allocated_cases": 500,
+  "scenario_hours_avoided_hypothetical": 27911.84094656809,
+  "source_rows": 90565
+}

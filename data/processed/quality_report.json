@@ -1,0 +1,45 @@
+{
+  "checks": [
+    {
+      "name": "row_count",
+      "operator": ">=",
+      "passed": true,
+      "threshold": 50000.0,
+      "value": 90565.0
+    },
+    {
+      "name": "duplicate_key_rate",
+      "operator": "<=",
+      "passed": true,
+      "threshold": 0.0,
+      "value": 0.0
+    },
+    {
+      "name": "created_date_parse_rate",
+      "operator": ">=",
+      "passed": true,
+      "threshold": 0.999,
+      "value": 1.0
+    },
+    {
+      "name": "community_board_coverage",
+      "operator": ">=",
+      "passed": true,
+      "threshold": 0.85,
+      "value": 0.9927897090487495
+    },
+    {
+      "name": "negative_duration_rate",
+      "operator": "<=",
+      "passed": true,
+      "threshold": 0.001,
+      "value": 2.2238777756774487e-05
+    }
+  ],
+  "notes": [
+    "Closed-date missingness is retained because open requests are analytically meaningful.",
+    "Rows with negative resolution time are quarantined from duration metrics, not silently fixed."
+  ],
+  "passed": true,
+  "rows": 90565
+}
